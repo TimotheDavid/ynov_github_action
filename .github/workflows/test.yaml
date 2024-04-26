@@ -1,0 +1,40 @@
+name: CI
+ 
+on:
+ 
+  workflow_dispatch:
+ 
+env:
+  TEST: Hassan # var test 
+ 
+jobs:
+ 
+  build: # pipeline for build 
+    runs-on: ubuntu-latest # run on ubuntu latest (22.4)
+    env :
+      TEST2: Hassan1 # set var TEST2
+ 
+    steps:
+      - uses: actions/checkout@v3
+ 
+      - name: Run a one-line script # name of the script 
+        run: echo "Hello, $TEST" # echo $TEST
+ 
+      - name: Run a multi-line script
+        run: |
+          echo "$TEST2" 
+ 
+  deploy: # pipeline for deploy
+    runs-on: ubuntu-latest # run on latest ubuntu
+    env :
+      TEST3: Hassan3 
+ 
+    steps:
+      - uses: actions/checkout@v3 # checkout (ultra stable action : should be latest or need to update at every time)
+ 
+      - name: Run a one-line script
+        run: echo "Hello, $TEST"
+ 
+      - name: Run a multi-line script
+        run: |
+          echo "$TEST2"
